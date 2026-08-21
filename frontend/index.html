@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EventOps | Intelligent Event Support</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- Toast notifications -->
+<div id="toastContainer" class="toast-container"></div>
+
+<!-- ================= AUTHENTICATION ================= -->
+
+<section id="authPage" class="auth-page">
+
+    <div class="auth-brand-panel">
+        <div class="brand-content">
+            <div class="brand-logo large-logo">EO</div>
+
+            <p class="eyebrow">INTELLIGENT CAMPUS OPERATIONS</p>
+
+            <h1>Every event.<br>Fully supported.</h1>
+
+            <p class="brand-description">
+                Coordinate technical and infrastructure support before,
+                during and after college events from one intelligent platform.
+            </p>
+
+            <div class="feature-points">
+                <div class="feature-point">
+                    <span>01</span>
+                    <p>Smart classification and priority detection</p>
+                </div>
+
+                <div class="feature-point">
+                    <span>02</span>
+                    <p>Real-time request lifecycle and SLA tracking</p>
+                </div>
+
+                <div class="feature-point">
+                    <span>03</span>
+                    <p>Event readiness and operational intelligence</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="auth-form-panel">
+
+        <button id="authThemeButton"
+                class="icon-button auth-theme-button"
+                type="button"
+                aria-label="Change theme">
+            <span class="theme-icon">☾</span>
+        </button>
+
+        <div class="auth-card">
+
+            <div class="mobile-brand">
+                <div class="brand-logo">EO</div>
+                <strong>EventOps</strong>
+            </div>
+
+            <div class="auth-tabs">
+                <button id="loginTab"
+                        class="auth-tab active"
+                        type="button">
+                    Sign in
+                </button>
+
+                <button id="registerTab"
+                        class="auth-tab"
+                        type="button">
+                    Create account
+                </button>
+            </div>
+
+            <!-- Login form -->
+
+            <form id="loginForm" class="auth-form">
+
+                <div class="form-heading">
+                    <p class="eyebrow">WELCOME BACK</p>
+                    <h2>Sign in to EventOps</h2>
+                    <p>Enter your account details to continue.</p>
+                </div>
+
+                <label class="field">
+                    <span>Email address</span>
+                    <input id="loginEmail"
+                           type="email"
+                           placeholder="name@college.edu"
+                           autocomplete="email"
+                           required>
+                </label>
+
+                <label class="field">
+                    <span>Password</span>
+
+                    <div class="password-field">
+                        <input id="loginPassword"
+                               type="password"
+                               placeholder="Enter your password"
+                               autocomplete="current-password"
+                               minlength="8"
+                               required>
+
+                        <button class="password-toggle"
+                                type="button"
+                                data-target="loginPassword">
+                            Show
+                        </button>
+                    </div>
+                </label>
+
+                <button id="loginButton"
+                        class="primary-button"
+                        type="submit">
+                    <span>Sign in</span>
+                    <span>→</span>
+                </button>
+
+                <p class="form-switch-text">
+                    New to EventOps?
+                    <button id="openRegisterButton"
+                            class="text-button"
+                            type="button">
+                        Create an account
+                    </button>
+                </p>
+            </form>
+
+            <!-- Registration form -->
+
+            <form id="registerForm"
+                  class="auth-form hidden">
+
+                <div class="form-heading">
+                    <p class="eyebrow">JOIN EVENTOPS</p>
+                    <h2>Create your account</h2>
+                    <p>Register to coordinate college-event support.</p>
+                </div>
+
+                <div class="form-grid two-columns">
+                    <label class="field">
+                        <span>Full name</span>
+                        <input id="registerName"
+                               type="text"
+                               placeholder="Enter your full name"
+                               minlength="2"
+                               maxlength="100"
+                               required>
+                    </label>
+
+                    <label class="field">
+                        <span>Email address</span>
+                        <input id="registerEmail"
+                               type="email"
+                               placeholder="name@college.edu"
+                               required>
+                    </label>
+                </div>
+
+                <div class="form-grid two-columns">
+                    <label class="field">
+                        <span>Role</span>
+                        <select id="registerRole" required>
+                            <option value="">Select your role</option>
+                            <option value="ORGANIZER">Event Organizer</option>
+                            <option value="STAFF">Support Staff</option>
+                            <option value="EVENT_MANAGER">Event Manager</option>
+                            <option value="ADMIN">Administrator</option>
+                        </select>
+                    </label>
+
+                    <label class="field">
+                        <span>Department</span>
+                        <input id="registerDepartment"
+                               type="text"
+                               placeholder="Example: IT Support"
+                               maxlength="100">
+                    </label>
+                </div>
+
+                <label class="field">
+                    <span>Password</span>
+
+                    <div class="password-field">
+                        <input id="registerPassword"
+                               type="password"
+                               placeholder="Minimum 8 characters"
+                               minlength="8"
+                               maxlength="100"
+                               required>
+
+                        <button class="password-toggle"
+                                type="button"
+                                data-target="registerPassword">
+                            Show
+                        </button>
+                    </div>
+                </label>
+
+                <button id="registerButton"
+                        class="primary-button"
+                        type="submit">
+                    <span>Create account</span>
+                    <span>→</span>
+                </button>
+
+                <p class="form-switch-text">
+                    Already registered?
+                    <button id="openLoginButton"
+                            class="text-button"
+                            type="button">
+                        Sign in
+                    </button>
+                </p>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- ================= APPLICATION ================= -->
+
+<div id="application" class="application hidden">
+
+    <!-- Sidebar -->
+
+    <aside id="sidebar" class="sidebar">
+
+        <div class="sidebar-header">
+            <div class="brand-logo">EO</div>
+
+            <div>
+                <strong>EventOps</strong>
+                <span>Campus operations</span>
+            </div>
+
+            <button id="closeSidebarButton"
+                    class="icon-button mobile-only"
+                    type="button">
+                ✕
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <button class="nav-item active"
+                    data-section="dashboardSection"
+                    type="button">
+                <span class="nav-icon">⌂</span>
+                <span>Dashboard</span>
+            </button>
+
+            <button class="nav-item"
+                    data-section="eventsSection"
+                    type="button">
+                <span class="nav-icon">◇</span>
+                <span>Events</span>
+            </button>
+
+            <button class="nav-item"
+                    data-section="requestsSection"
+                    type="button">
+                <span class="nav-icon">◎</span>
+                <span>Support requests</span>
+            </button>
+
+            <button class="nav-item"
+                    data-section="createRequestSection"
+                    type="button">
+                <span class="nav-icon">＋</span>
+                <span>Create request</span>
+            </button>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="sidebar-status">
+                <span class="status-dot"></span>
+
+                <div>
+                    <strong>System operational</strong>
+                    <span>Connected to support API</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <!-- Main area -->
+
+    <main class="main-area">
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+                <button id="openSidebarButton"
+                        class="icon-button mobile-only"
+                        type="button">
+                    ☰
+                </button>
+
+                <div>
+                    <p id="pageEyebrow" class="eyebrow">CONTROL CENTER</p>
+                    <h2 id="pageTitle">Operations dashboard</h2>
+                </div>
+            </div>
+
+            <div class="topbar-actions">
+
+                <button id="themeButton"
+                        class="icon-button"
+                        type="button"
+                        aria-label="Change theme">
+                    <span class="theme-icon">☾</span>
+                </button>
+
+                <div class="user-menu">
+                    <div id="userAvatar" class="user-avatar">U</div>
+
+                    <div class="user-information">
+                        <strong id="currentUserName">User</strong>
+                        <span id="currentUserRole">Role</span>
+                    </div>
+                </div>
+
+                <button id="logoutButton"
+                        class="secondary-button compact-button"
+                        type="button">
+                    Sign out
+                </button>
+            </div>
+        </header>
+
+        <div class="page-content">
+
+            <!-- Dashboard section -->
+
+            <section id="dashboardSection"
+                     class="app-section active-section">
+
+                <div class="hero-card">
+                    <div>
+                        <p class="eyebrow">LIVE EVENT OPERATIONS</p>
+                        <h1 id="dashboardGreeting">
+                            Good day, welcome to EventOps.
+                        </h1>
+                        <p>
+                            Monitor readiness, prioritize incidents and keep
+                            every event running smoothly.
+                        </p>
+                    </div>
+
+                    <button class="primary-button action-button"
+                            data-open-section="createRequestSection"
+                            type="button">
+                        <span>Create support request</span>
+                        <span>＋</span>
+                    </button>
+                </div>
+
+                <div class="stats-grid">
+
+                    <article class="stat-card purple">
+                        <div class="stat-card-top">
+                            <span>Total requests</span>
+                            <span class="stat-icon">◎</span>
+                        </div>
+                        <strong id="totalRequestsStat">0</strong>
+                        <p>Across all active events</p>
+                    </article>
+
+                    <article class="stat-card orange">
+                        <div class="stat-card-top">
+                            <span>Open issues</span>
+                            <span class="stat-icon">◷</span>
+                        </div>
+                        <strong id="openRequestsStat">0</strong>
+                        <p>Awaiting final closure</p>
+                    </article>
+
+                    <article class="stat-card red">
+                        <div class="stat-card-top">
+                            <span>High impact</span>
+                            <span class="stat-icon">!</span>
+                        </div>
+                        <strong id="criticalRequestsStat">0</strong>
+                        <p>High or critical priority</p>
+                    </article>
+
+                    <article class="stat-card green">
+                        <div class="stat-card-top">
+                            <span>Resolved</span>
+                            <span class="stat-icon">✓</span>
+                        </div>
+                        <strong id="resolvedRequestsStat">0</strong>
+                        <p>Successfully completed</p>
+                    </article>
+                </div>
+
+                <div class="dashboard-grid">
+
+                    <article class="panel readiness-panel">
+                        <div class="panel-header">
+                            <div>
+                                <p class="eyebrow">EVENT HEALTH</p>
+                                <h3>Operational readiness</h3>
+                            </div>
+
+                            <strong id="readinessValue"
+                                    class="readiness-value">
+                                100%
+                            </strong>
+                        </div>
+
+                        <div class="readiness-ring-container">
+                            <div id="readinessRing"
+                                 class="readiness-ring">
+                                <div>
+                                    <strong id="readinessRingValue">100%</strong>
+                                    <span>Ready</span>
+                                </div>
+                            </div>
+
+                            <div class="readiness-copy">
+                                <h4 id="readinessMessage">
+                                    Operations look healthy
+                                </h4>
+                                <p>
+                                    Readiness is calculated from request
+                                    priorities and resolution status.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="panel">
+                        <div class="panel-header">
+                            <div>
+                                <p class="eyebrow">PRIORITY QUEUE</p>
+                                <h3>Requests needing attention</h3>
+                            </div>
+
+                            <button class="text-button"
+                                    data-open-section="requestsSection"
+                                    type="button">
+                                View all
+                            </button>
+                        </div>
+
+                        <div id="priorityQueue"
+                             class="compact-request-list">
+                            <div class="empty-state compact-empty">
+                                <span>✓</span>
+                                <p>No urgent requests</p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <article class="panel">
+                    <div class="panel-header">
+                        <div>
+                            <p class="eyebrow">RECENT ACTIVITY</p>
+                            <h3>Latest support requests</h3>
+                        </div>
+                    </div>
+
+                    <div id="recentRequests"
+                         class="request-table-container">
+                    </div>
+                </article>
+            </section>
+
+            <!-- Events section -->
+
+            <section id="eventsSection" class="app-section">
+
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">EVENT MANAGEMENT</p>
+                        <h1>College events</h1>
+                        <p>Create events and monitor their support readiness.</p>
+                    </div>
+
+                    <button id="openEventFormButton"
+                            class="primary-button action-button"
+                            type="button">
+                        <span>Create event</span>
+                        <span>＋</span>
+                    </button>
+                </div>
+
+                <article id="eventFormPanel"
+                         class="panel form-panel hidden">
+
+                    <div class="panel-header">
+                        <div>
+                            <p class="eyebrow">NEW EVENT</p>
+                            <h3>Create a college event</h3>
+                        </div>
+
+                        <button id="closeEventFormButton"
+                                class="icon-button"
+                                type="button">
+                            ✕
+                        </button>
+                    </div>
+
+                    <form id="eventForm">
+
+                        <div class="form-grid two-columns">
+                            <label class="field">
+                                <span>Event name</span>
+                                <input id="eventName"
+                                       type="text"
+                                       placeholder="Example: TechFest 2026"
+                                       maxlength="150"
+                                       required>
+                            </label>
+
+                            <label class="field">
+                                <span>Venue</span>
+                                <input id="eventVenue"
+                                       type="text"
+                                       placeholder="Example: Main Auditorium"
+                                       maxlength="150"
+                                       required>
+                            </label>
+                        </div>
+
+                        <label class="field">
+                            <span>Description</span>
+                            <textarea id="eventDescription"
+                                      placeholder="Describe the event"
+                                      maxlength="1000"
+                                      rows="4"></textarea>
+                        </label>
+
+                        <div class="form-grid two-columns">
+                            <label class="field">
+                                <span>Starts at</span>
+                                <input id="eventStart"
+                                       type="datetime-local"
+                                       required>
+                            </label>
+
+                            <label class="field">
+                                <span>Ends at</span>
+                                <input id="eventEnd"
+                                       type="datetime-local"
+                                       required>
+                            </label>
+                        </div>
+
+                        <label class="field">
+                            <span>Expected participants</span>
+                            <input id="eventParticipants"
+                                   type="number"
+                                   min="1"
+                                   placeholder="Enter participant count"
+                                   required>
+                        </label>
+
+                        <button class="primary-button form-submit-button"
+                                type="submit">
+                            Create event
+                        </button>
+                    </form>
+                </article>
+
+                <div id="eventsGrid" class="events-grid"></div>
+            </section>
+
+            <!-- Requests section -->
+
+            <section id="requestsSection" class="app-section">
+
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">SUPPORT OPERATIONS</p>
+                        <h1>Support requests</h1>
+                        <p>Track issues from submission through closure.</p>
+                    </div>
+
+                    <button class="primary-button action-button"
+                            data-open-section="createRequestSection"
+                            type="button">
+                        <span>New request</span>
+                        <span>＋</span>
+                    </button>
+                </div>
+
+                <div class="filter-bar">
+                    <label class="search-box">
+                        <span>⌕</span>
+                        <input id="requestSearch"
+                               type="search"
+                               placeholder="Search requests">
+                    </label>
+
+                    <select id="statusFilter">
+                        <option value="ALL">All statuses</option>
+                        <option value="SUBMITTED">Submitted</option>
+                        <option value="ASSIGNED">Assigned</option>
+                        <option value="ACCEPTED">Accepted</option>
+                        <option value="IN_PROGRESS">In progress</option>
+                        <option value="RESOLVED">Resolved</option>
+                        <option value="CLOSED">Closed</option>
+                    </select>
+
+                    <select id="priorityFilter">
+                        <option value="ALL">All priorities</option>
+                        <option value="CRITICAL">Critical</option>
+                        <option value="HIGH">High</option>
+                        <option value="MEDIUM">Medium</option>
+                        <option value="LOW">Low</option>
+                    </select>
+                </div>
+
+                <div id="requestsGrid" class="requests-grid"></div>
+            </section>
+
+            <!-- Create request section -->
+
+            <section id="createRequestSection" class="app-section">
+
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">SMART REQUEST INTAKE</p>
+                        <h1>Create a support request</h1>
+                        <p>
+                            Describe the problem. EventOps will detect its
+                            category, priority, impact and SLA automatically.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="request-form-layout">
+
+                    <article class="panel form-panel">
+
+                        <form id="supportRequestForm">
+
+                            <label class="field">
+                                <span>Event</span>
+                                <select id="requestEvent" required>
+                                    <option value="">Select an event</option>
+                                </select>
+                            </label>
+
+                            <div class="form-grid two-columns">
+                                <label class="field">
+                                    <span>Request title</span>
+                                    <input id="requestTitle"
+                                           type="text"
+                                           placeholder="Briefly state the problem"
+                                           maxlength="150"
+                                           required>
+                                </label>
+
+                                <label class="field">
+                                    <span>Location</span>
+                                    <input id="requestLocation"
+                                           type="text"
+                                           placeholder="Building, floor and venue"
+                                           maxlength="200"
+                                           required>
+                                </label>
+                            </div>
+
+                            <label class="field">
+                                <span>Problem description</span>
+                                <textarea id="requestDescription"
+                                          placeholder="Explain what happened and its impact"
+                                          minlength="10"
+                                          maxlength="2000"
+                                          rows="6"
+                                          required></textarea>
+                            </label>
+
+                            <div class="form-grid two-columns">
+                                <label class="field">
+                                    <span>Participants affected</span>
+                                    <input id="participantsAffected"
+                                           type="number"
+                                           min="1"
+                                           placeholder="Number affected"
+                                           required>
+                                </label>
+
+                                <label class="field">
+                                    <span>Required by</span>
+                                    <input id="requestRequiredBy"
+                                           type="datetime-local"
+                                           required>
+                                </label>
+                            </div>
+
+                            <button class="primary-button form-submit-button"
+                                    type="submit">
+                                Analyze and submit request
+                            </button>
+                        </form>
+                    </article>
+
+                    <aside class="intelligence-card">
+                        <p class="eyebrow">SMART ENGINE</p>
+                        <h3>What EventOps detects</h3>
+
+                        <div class="intelligence-list">
+                            <div>
+                                <span>01</span>
+                                <p>
+                                    <strong>Category</strong>
+                                    Network, AV, electrical, technical or
+                                    infrastructure.
+                                </p>
+                            </div>
+
+                            <div>
+                                <span>02</span>
+                                <p>
+                                    <strong>Priority</strong>
+                                    Calculated from urgency, impact and
+                                    participants affected.
+                                </p>
+                            </div>
+
+                            <div>
+                                <span>03</span>
+                                <p>
+                                    <strong>Impact score</strong>
+                                    A dynamic score from 0 to 100.
+                                </p>
+                            </div>
+
+                            <div>
+                                <span>04</span>
+                                <p>
+                                    <strong>SLA deadline</strong>
+                                    The response deadline based on priority.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div id="classificationPreview"
+                             class="classification-preview">
+                            <span>AI</span>
+                            <p>
+                                Submit a request to view its smart
+                                classification.
+                            </p>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+        </div>
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

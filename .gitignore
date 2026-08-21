@@ -1,0 +1,16 @@
+**/target/
+backend-container/
+
+.env
+.env.*
+*.env
+application-local.properties
+
+.vscode/
+.idea/
+*.iml
+*.log
+
+.DS_Store
+Thumbs.db
+desktop.ini
