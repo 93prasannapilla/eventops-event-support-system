@@ -7,6 +7,8 @@ services:
     dockerContext: ./backend
     healthCheckPath: /
     envVars:
+      - key: SPRING_JPA_DATABASE_PLATFORM
+        value: org.hibernate.dialect.PostgreSQLDialect
       - key: DB_URL
         fromDatabase:
           name: eventops-db
