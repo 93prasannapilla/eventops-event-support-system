@@ -7,7 +7,11 @@ fi
 
 case "$DB_URL" in
     jdbc:*) ;;
-    postgres://*) DB_URL="jdbc:postgresql://${DB_URL#postgres://}" ;;
+    postgres://*|postgresql://*)
+        DB_URL="${DB_URL#*://}"
+        DB_URL="${DB_URL#*@}"
+        DB_URL="jdbc:postgresql://$DB_URL"
+        ;;
     *) DB_URL="jdbc:$DB_URL" ;;
 esac
 
