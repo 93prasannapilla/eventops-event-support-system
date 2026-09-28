@@ -8,8 +8,20 @@ services:
     healthCheckPath: /
     envVars:
       - key: DB_URL
-        sync: false
+        fromDatabase:
+          name: eventops-db
+          property: connectionString
       - key: DB_USERNAME
-        sync: false
+        fromDatabase:
+          name: eventops-db
+          property: user
       - key: DB_PASSWORD
-        sync: false
+        fromDatabase:
+          name: eventops-db
+          property: password
+
+databases:
+  - name: eventops-db
+    databaseName: event_support_db
+    user: eventops_user
+    plan: free
