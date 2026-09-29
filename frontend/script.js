@@ -652,7 +652,7 @@ function renderRecentRequests() {
                                     </span>
                                 </td>
 
-                                <td>${formatDate(request.createdAt)}</td>
+                                <td>${formatServerCreatedAt(request.createdAt)}</td>
                             </tr>
                         `
                     )
@@ -1278,6 +1278,25 @@ function formatDate(value) {
     return new Intl.DateTimeFormat("en-IN", {
         dateStyle: "medium",
         timeStyle: "short"
+    }).format(date);
+}
+
+function formatServerCreatedAt(value) {
+    if (!value) {
+        return "Not available";
+    }
+
+    const hasTimeZone = /(?:Z|[+-]\d{2}:\d{2})$/i.test(value);
+    const date = new Date(hasTimeZone ? value : `${value}Z`);
+
+    if (Number.isNaN(date.getTime())) {
+        return value;
+    }
+
+    return new Intl.DateTimeFormat("en-IN", {
+        dateStyle: "medium",
+        timeStyle: "short",
+        timeZone: "Asia/Kolkata"
     }).format(date);
 }
 
